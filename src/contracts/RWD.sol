@@ -1,8 +1,8 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 contract Tether {
-    string public name = 'Tether';
-    string public symbol = 'USDT';
+    string public name = 'Reward';
+    string public symbol = 'RWD';
     uint256 public totalSupply = 1000000000000000000000000;
     uint8 public decimals = 18;
 
@@ -12,7 +12,7 @@ contract Tether {
     mapping(address => uint256) public balanceOf;
     mapping(address=> mapping(address => uint256)) public allowance;
     
-    constructor() public{
+    constructor() public {
         balanceOf[msg.sender] = totalSupply; 
     }
 
@@ -24,7 +24,7 @@ contract Tether {
         return true;
     }
 
-    function approve(address _spender, uint _value) public returns (bool success){
+    function approve (address _spender, uint _value) public returns (bool success){
         allowance[msg.sender][_spender] = _value;
         emit Approval(msg.sender, _spender,_value);
         return true;
@@ -37,10 +37,5 @@ contract Tether {
         emit Transfer(_from,_to,_value);
         return true;
     }
-
-
-    
-
-
 
 }
