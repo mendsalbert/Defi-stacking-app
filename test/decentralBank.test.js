@@ -1,3 +1,5 @@
+const { default: Web3 } = require("web3");
+
 const DecentralBank = artifacts.require("DecentralBank");
 const Reward = artifacts.require("RWD");
 const Tether = artifacts.require("Tether");
@@ -7,11 +9,16 @@ require("chai")
   .should();
 
 contract("DecentralBank", (accounts) => {
-  let tether, reward;
+  let tether, reward, decentralBank;
 
+  function tokens(number) {
+    return Web3.utils.toWei(number);
+  }
   before(async () => {
     tether = await Tether.new();
     reward = await Reward.new();
+    decentralBank = await DecentralBank.new(reward.address, tether.address);
+    await reward.transfer(decentralBank.address, tokens("1000000"));
   });
   describe("Tether Deployement", async () => {
     it("matches name successfully", async () => {
