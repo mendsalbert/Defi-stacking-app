@@ -43,5 +43,35 @@ contract("DecentralBank", ([owner, customer]) => {
       const balance = await reward.balanceOf(decentralBank.address);
       assert.equal(balance, tokens("1000000"));
     });
+
+    describe("Yiel farming deployement", async () => {
+      it("rewards tokens for staking", async () => {
+        let result;
+        result = await tether.balanceOf(customer);
+        assert.equal(
+          result.toString(),
+          tokens("100"),
+          "customer balance before staking"
+        );
+
+        //check staking for customer of 100 tokens;
+        await tether.approve(decentralBank.address, tokens("100"), {
+          from: customer,
+        });
+        await decentralBank.depositeTokens(tokens("100"), { from: customer });
+
+        //check balance of custoumer(updated);
+        result = await tether.balanceOf(customer);
+        assert.equal(result.toString(), tokens("0"));
+
+        //check banace of decentral bank
+        result = await tether.balanceOf(decentralBank.address);
+        assert.equal(result.toString(), tokens("1000"));
+
+        //is staking balance
+        result = await decentralBank.isStaking(customer);
+        assert.equal(result.toString(), "true", "customer is staking status");
+      });
+    });
   });
 });
