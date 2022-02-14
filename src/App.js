@@ -4,10 +4,8 @@ import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
-    <div className="text-center">
+    <div>
       <Navbar />
-      <p>hello world</p>
-      {/* <Button>button</Button> */}
     </div>
   );
 };
