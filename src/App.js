@@ -17,6 +17,7 @@ const App = () => {
   const loadBlockchainData = async () => {
     const web3 = window.web3;
     const account = await web3.eth.getAccounts();
+    setAccoutNumber(account);
     console.log(account);
   };
   useEffect(() => {
@@ -25,6 +26,14 @@ const App = () => {
   }, []);
 
   const [accountNumber, setAccoutNumber] = useState("0x0");
+  const [tether, setTether] = useState({});
+  const [reward, setReward] = useState({});
+  const [decentralBank, setDecentralBank] = useState({});
+  const [tetherBalance, setTetherBalance] = useState(0);
+  const [rewardBalance, setRewardBalance] = useState(0);
+  const [stakingBalance, setStakingBalance] = useState(0);
+  const [loading, setLoading] = useState(true);
+
   return (
     <div>
       <Navbar accountNumber={accountNumber} />
