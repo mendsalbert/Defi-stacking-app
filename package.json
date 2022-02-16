@@ -27,8 +27,8 @@
     "node-polyfill-webpack-plugin": "^1.1.4",
     "os": "^0.1.2",
     "os-browserify": "^0.3.0",
+    "postcss-cli": "^9.1.0",
     "react": "^17.0.2",
-    "react-app-rewired": "^2.1.11",
     "react-bootstrap": "^1.0.0-beta.5",
     "react-dom": "^17.0.2",
     "react-particles-js": "^3.5.3",
@@ -43,10 +43,12 @@
     "web3": "1.2.11"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "start": "npm run watch:css && react-app-rewired start",
+    "build": "npm run build:css && react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "eject": "react-app-rewired eject",
+    "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
+    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
   },
   "eslintConfig": {
     "extends": [
@@ -65,5 +67,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.6",
+    "react-app-rewire-alias": "^1.1.7",
+    "react-app-rewired": "^2.2.1",
+    "tailwindcss": "^3.0.23"
   }
 }
