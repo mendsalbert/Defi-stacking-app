@@ -1,14 +1,24 @@
 import React from "react";
 import bank from "../bankk.png";
+import {
+  IdentificationIcon,
+  LibraryIcon,
+  UserCircleIcon,
+} from "@heroicons/react/outline";
 const Navbar = ({ accountNumber }) => {
   return (
-    <nav className="bg-black text-white">
-      <div className="flex flex-row items-center py-3  justify-between ">
-        <div className="flex items-center ">
-          <p className="text-lg">DDAP Yield Staking (Decentralised Bank)</p>
-          <img src={bank} width={85} />
+    <nav className="">
+      <div className="flex flex-col items-center justify-center mt-3 mb-3">
+        <LibraryIcon className="h-14" />
+        <p className="text-2xl">DDAP Yeild Staking (Decentralize Banking)</p>
+      </div>
+      <div className="bg-white space-x-3 rounded-lg text-gray-600  p-4 shadow-lg flex justify-evenly items-center">
+        <div>
+          <IdentificationIcon className="h-10" />
         </div>
-        <p className="text-lg">ACCOUNT NUMBER : {accountNumber}</p>
+        <div>
+          <p className="text-xl">{accountNumber}</p>
+        </div>
       </div>
     </nav>
   );

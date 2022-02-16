@@ -6,6 +6,9 @@ import "./assets/main.css";
 import Tether from "./build/Tether.json";
 import Reward from "./build/RWD.json";
 import DecentralBank from "./build/DecentralBank.json";
+import Layout from "./components/Layout";
+import Summary from "./components/Summary";
+import Data from "./components/Data";
 
 const App = () => {
   const loadWeb3 = async () => {
@@ -81,9 +84,11 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   return (
-    <div>
+    <Layout>
       <Navbar accountNumber={accountNumber} />
-    </div>
+      <Summary />
+      <Data />
+    </Layout>
   );
 };
 
