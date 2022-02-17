@@ -16,24 +16,31 @@ const Data = () => {
         <div className="w-full rounded-md text-white py-8 bg-black flex flex-col items-center justify-center ">
           <LightningBoltIcon className="h-14" />
           <p className="text-2xl">Staking Tokens</p>
-          <p className="text-7xl font-bold">0</p>
+          <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="username"
+            type="text"
+            placeholder="Username"
+          >
+            <p className="text-7xl font-bold">0</p>
+          </div>
+          <div className="w-full rounded-md text-white bg-black flex flex-col items-center justify-center ">
+            <CubeIcon className="h-14" />
+            <p className="text-2xl">Balance</p>
+            <p className="text-7xl font-bold">100</p>
+          </div>
         </div>
-        <div className="w-full rounded-md text-white bg-black flex flex-col items-center justify-center ">
-          <CubeIcon className="h-14" />
-          <p className="text-2xl">Balance</p>
-          <p className="text-7xl font-bold">100</p>
+        <div className=" space-y-4 flex w-8/12 text-center flex-col items-center justify-center mt-4">
+          <div className="w-full text-white text-xl cursor-pointer bg-green-700 py-3 rounded-md">
+            DEPOSITE
+          </div>
+          <div className="w-full text-white text-xl cursor-pointer bg-red-600 py-3 rounded-md">
+            WITHDRAW
+          </div>
         </div>
-      </div>
-      <div className=" space-y-4 flex w-8/12 text-center flex-col items-center justify-center mt-4">
-        <div className="w-full text-white text-xl cursor-pointer bg-green-700 py-3 rounded-md">
-          DEPOSITE
-        </div>
-        <div className="w-full text-white text-xl cursor-pointer bg-red-600 py-3 rounded-md">
-          WITHDRAW
-        </div>
-      </div>
-    </>
-    // </div>
+      </>
+      //{" "}
+    </div>
   );
 };
 
