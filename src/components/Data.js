@@ -17,30 +17,29 @@ const Data = () => {
           <LightningBoltIcon className="h-14" />
           <p className="text-2xl">Staking Tokens</p>
           <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
+            class="bg-gray-900 p-7 text-2xl w-6/12 m-4 appearance-none border-2 border-gray-500 rounded  py-4 px-4 text-white leading-tight focus:outline-none focus:bg-gray-800 focus:border-gray-400"
             type="text"
-            placeholder="Username"
-          >
-            <p className="text-7xl font-bold">0</p>
-          </div>
-          <div className="w-full rounded-md text-white bg-black flex flex-col items-center justify-center ">
-            <CubeIcon className="h-14" />
-            <p className="text-2xl">Balance</p>
-            <p className="text-7xl font-bold">100</p>
-          </div>
+            onFocus={true}
+          />
+          {/* <p className="text-7xl font-bold">0</p> */}
         </div>
-        <div className=" space-y-4 flex w-8/12 text-center flex-col items-center justify-center mt-4">
-          <div className="w-full text-white text-xl cursor-pointer bg-green-700 py-3 rounded-md">
-            DEPOSITE
-          </div>
-          <div className="w-full text-white text-xl cursor-pointer bg-red-600 py-3 rounded-md">
-            WITHDRAW
-          </div>
+        <div className="w-full rounded-md text-white bg-black flex flex-col items-center justify-center ">
+          <CubeIcon className="h-14" />
+          <p className="text-2xl">Balance</p>
+          <p className="text-7xl font-bold">100</p>
         </div>
-      </>
-      //{" "}
-    </div>
+      </div>
+      <div className=" space-y-4 flex w-8/12 text-center flex-col items-center justify-center mt-4">
+        <div className="w-full text-white text-xl cursor-pointer bg-green-700 py-3 rounded-md">
+          DEPOSITE
+        </div>
+        <div className="w-full text-white text-xl cursor-pointer bg-red-600 py-3 rounded-md">
+          WITHDRAW
+        </div>
+      </div>
+    </>
+    //{" "}
+    // </div>
   );
 };
 
