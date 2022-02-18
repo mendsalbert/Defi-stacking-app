@@ -32,7 +32,7 @@ const App = () => {
 
     if (tetherData) {
       const tether = new web3.eth.Contract(Tether.abi, tetherData.address);
-      setTether({ tether });
+      setTether(tether);
       let tetherBalance = await tether.methods.balanceOf(account[0]).call();
       setTetherBalance(tetherBalance.toString());
       console.log(tetherBalance);
@@ -42,7 +42,7 @@ const App = () => {
     const rewardData = await Reward.networks[networkId];
     if (reward) {
       const reward = new web3.eth.Contract(Reward.abi, rewardData.address);
-      setReward({ reward });
+      setReward(reward);
       let rewardBalance = await reward.methods.balanceOf(account[0]).call();
       setRewardBalance(rewardBalance.toString());
       console.log(rewardBalance);
@@ -56,7 +56,7 @@ const App = () => {
         DecentralBank.abi,
         decentralBankData.address
       );
-      setDecentralBank({ decentralBank });
+      setDecentralBank(decentralBank);
       let stakingBalance = await decentralBank.methods
         .stakingBalance(account[0])
         .call();
@@ -83,21 +83,37 @@ const App = () => {
   const [stakingBalance, setStakingBalance] = useState(0);
   const [loading, setLoading] = useState(true);
 
+  // const stakeToken = (amount) => {
+  //   tether.methods
+  //     .approve(decentralBank._address, amount)
+  //     .send({ from: accountNumber })
+  //     .on("transactionHash", (hash) => {
+  //       console.log(hash);
+  //       decentralBank.methods
+  //         .depositeTokens(amount)
+  //         .send({ from: accountNumber })
+  //         .on("transactionHash", (hash) => {
+  //           setLoading(false);
+  //         });
+  //     });
+  // };
+
   const stakeToken = (amount) => {
-    setLoading(true);
+    // let ethAmount = Web3.utils.fromWei(amount, 'ether');
+    setLoading({ loading: true });
     tether.methods
       .approve(decentralBank._address, amount)
       .send({ from: accountNumber })
       .on("transactionHash", (hash) => {
+        // grab decentralBank and then grab depositTokens()....send from the state of Account....
         decentralBank.methods
           .depositeTokens(amount)
           .send({ from: accountNumber })
           .on("transactionHash", (hash) => {
-            setLoading(false);
+            setLoading({ loading: false });
           });
       });
   };
-
   const unStackeTokens = () => {
     setLoading(true);
 
@@ -108,6 +124,7 @@ const App = () => {
         setLoading(false);
       });
   };
+
   if (!loading) {
     console.log("stakingbalance" + stakingBalance);
     console.log("rewardBalance" + rewardBalance);
