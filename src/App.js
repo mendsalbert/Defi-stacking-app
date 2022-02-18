@@ -34,7 +34,7 @@ const App = () => {
       const tether = new web3.eth.Contract(Tether.abi, tetherData.address);
       setTether({ tether });
       let tetherBalance = await tether.methods.balanceOf(account[0]).call();
-      setTetherBalance({ tetherBalance: tetherBalance.toString() });
+      setTetherBalance(tetherBalance.toString());
       console.log(tetherBalance);
     } else {
       window.alert("tether contract not deployed");
@@ -44,7 +44,7 @@ const App = () => {
       const reward = new web3.eth.Contract(Reward.abi, rewardData.address);
       setReward({ reward });
       let rewardBalance = await reward.methods.balanceOf(account[0]).call();
-      setRewardBalance({ rewardBalance: rewardBalance.toString() });
+      setRewardBalance(rewardBalance.toString());
       console.log(rewardBalance);
     } else {
       window.alert("reward contract not deployed");
@@ -83,25 +83,21 @@ const App = () => {
   const [stakingBalance, setStakingBalance] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  if (loading) {
+  if (!loading) {
+    console.log("stakingbalance" + stakingBalance);
+    console.log("rewardBalance" + rewardBalance);
     return (
       <Layout>
         <Navbar accountNumber={accountNumber} />
-        <Summary />
-        <Data />
+        <Summary
+          stakingBalance={stakingBalance}
+          rewardBalance={rewardBalance}
+        />
+        <Data tetherBalance={tetherBalance} />
       </Layout>
     );
   } else {
     return (
-      // <div class="w-60 h-24 border-2 rounded-md mx-auto mt-20">
-      //   <div class="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
-      //     <div class="w-12 bg-gray-300 h-12 rounded-full "></div>
-      //     <div class="flex flex-col space-y-3">
-      //       <div class="w-36 bg-gray-300 h-6 rounded-md "></div>
-      //       <div class="w-24 bg-gray-300 h-6 rounded-md "></div>
-      //     </div>
-      //   </div>
-      // </div>
       <div className="w-8/12  rounded-md mx-auto mt-20">
         <div className="animate-pulse flex flex-col items-center h-full justify-center space-x-5">
           <div class="w-10/12 mb-4 bg-gray-300 h-16 rounded-lg "></div>

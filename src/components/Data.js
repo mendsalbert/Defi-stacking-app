@@ -8,7 +8,8 @@ import {
   LightningBoltIcon,
   UserCircleIcon,
 } from "@heroicons/react/outline";
-const Data = () => {
+import Web3 from "web3";
+const Data = (props) => {
   return (
     // <div className=" mt-12 w-8/12  rounded-lg text-gray-600 px-16 p-4  flex justify-between items-center">
     <>
@@ -26,7 +27,9 @@ const Data = () => {
         <div className="w-full rounded-md text-white bg-black flex flex-col items-center justify-center ">
           <CubeIcon className="h-14" />
           <p className="text-2xl">Balance</p>
-          <p className="text-7xl font-bold">100</p>
+          <p className="text-7xl font-bold">
+            {Web3.utils.fromWei(props.tetherBalance, "Ether")}
+          </p>
         </div>
       </div>
       <div className=" space-y-4 flex w-8/12 text-center flex-col items-center justify-center mt-4">
