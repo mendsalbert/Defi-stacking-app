@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import bank from "../bankk.png";
 import {
   CubeIcon,
@@ -10,6 +10,8 @@ import {
 } from "@heroicons/react/outline";
 import Web3 from "web3";
 const Data = (props) => {
+  const [token, setToken] = useState();
+
   return (
     // <div className=" mt-12 w-8/12  rounded-lg text-gray-600 px-16 p-4  flex justify-between items-center">
     <>
@@ -20,6 +22,8 @@ const Data = (props) => {
           <input
             class="bg-gray-900 p-7 text-2xl w-6/12 m-4 appearance-none border-2 border-gray-500 rounded  py-4 px-4 text-white leading-tight focus:outline-none focus:bg-gray-800 focus:border-gray-400"
             type="text"
+            onChange={(e) => setToken(e.target.value)}
+            value={token}
             onFocus={true}
           />
           {/* <p className="text-7xl font-bold">0</p> */}

@@ -83,6 +83,31 @@ const App = () => {
   const [stakingBalance, setStakingBalance] = useState(0);
   const [loading, setLoading] = useState(true);
 
+  const stakeToken = (amount) => {
+    setLoading(true);
+    tether.methods
+      .approve(decentralBank._address, amount)
+      .send({ from: accountNumber })
+      .on("transactionHash", (hash) => {
+        decentralBank.methods
+          .depositeTokens(amount)
+          .send({ from: accountNumber })
+          .on("transactionHash", (hash) => {
+            setLoading(false);
+          });
+      });
+  };
+
+  const unStackeTokens = () => {
+    setLoading(true);
+
+    decentralBank.methods
+      .unStackeTokens()
+      .send({ from: accountNumber })
+      .on("transactionHash", (hash) => {
+        setLoading(false);
+      });
+  };
   if (!loading) {
     console.log("stakingbalance" + stakingBalance);
     console.log("rewardBalance" + rewardBalance);
@@ -93,7 +118,11 @@ const App = () => {
           stakingBalance={stakingBalance}
           rewardBalance={rewardBalance}
         />
-        <Data tetherBalance={tetherBalance} />
+        <Data
+          tetherBalance={tetherBalance}
+          stakeToken={stakeToken}
+          unstakeToken={unStackeTokens}
+        />
       </Layout>
     );
   } else {
