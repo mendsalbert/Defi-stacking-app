@@ -100,12 +100,15 @@ const App = () => {
 
   const stakeToken = (amount) => {
     // let ethAmount = Web3.utils.fromWei(amount, 'ether');
-    setLoading({ loading: true });
+    // setLoading({ loading: true });
+    // console.log(decentralBank._address);
+    // console.log(amount);
+    let ethAmount = Web3.utils.fromWei(amount, "ether");
+    console.log(ethAmount);
     tether.methods
       .approve(decentralBank._address, amount)
       .send({ from: accountNumber })
       .on("transactionHash", (hash) => {
-        // grab decentralBank and then grab depositTokens()....send from the state of Account....
         decentralBank.methods
           .depositeTokens(amount)
           .send({ from: accountNumber })

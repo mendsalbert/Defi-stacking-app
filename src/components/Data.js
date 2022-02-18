@@ -39,8 +39,7 @@ const Data = (props) => {
       <div className=" space-y-4 flex w-8/12 text-center flex-col items-center justify-center mt-4">
         <div
           onClick={() => {
-            let value = Web3.utils.toWei(token, "ether");
-            props.stakeToken(value);
+            props.stakeToken(token);
           }}
           className="w-full  text-white text-xl cursor-pointer bg-green-700 py-3 rounded-md"
         >
